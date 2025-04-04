@@ -36,8 +36,31 @@ const BookingConfirmation = ({
 
   const handleBooking = async () => {
     try {
-      // Simulating booking process
-      await new Promise((resolve) => setTimeout(resolve, 1500));
+      // Create booking in Supabase
+      const { createBooking } = await import("../lib/supabaseClient");
+      const { getCurrentUser } = await import("../lib/supabaseClient");
+
+      const { data: userData } = await getCurrentUser();
+
+      if (!userData?.user) {
+        throw new Error("Usuário não autenticado");
+      }
+
+      const bookingData = {
+        user_id: userData.user.id,
+        guide_id: guideData.id || "1", // Fallback for demo
+        experience_id: "1", // Placeholder - would come from actual experience
+        date: bookingData.date,
+        time: "10:00", // Placeholder
+        participants: bookingData.participants,
+        total_price: guideData.price * bookingData.participants,
+        status: "pending",
+      };
+
+      const { error } = await createBooking(bookingData);
+
+      if (error) throw error;
+
       setStep(3); // Move to confirmation step
     } catch (error) {
       console.error("Error processing booking:", error);

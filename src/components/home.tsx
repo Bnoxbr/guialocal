@@ -54,9 +54,8 @@ const Home = () => {
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
       <HeroSection className="flex" />
-      {/* Featured Guides Section */}
-      <StepsSection />
-      <div className="py-12">
+      {/* Featured Guides Section - Moved directly below Hero */}
+      <div className="py-8">
         <FeaturedGuides />
       </div>
       {/* Destination Carousel Section */}

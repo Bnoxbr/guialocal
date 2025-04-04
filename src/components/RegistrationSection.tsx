@@ -51,21 +51,30 @@ const RegistrationSection = ({
     e.preventDefault();
     try {
       setIsLoading(true);
-      await registerTourist({
+
+      const authData = await registerTourist({
         name: touristForm.name,
         email: touristForm.email,
         password: touristForm.password,
       });
+
+      if (!authData) {
+        throw new Error("Failed to register");
+      }
+
       toast({
         title: "Sucesso!",
-        description: "Verifique seu email para confirmar o cadastro",
+        description: "Cadastro realizado com sucesso! Redirecionando...",
       });
+
       onSubmit(touristForm);
-    } catch (error) {
+      // Redirecionar para o dashboard após cadastro
+      window.location.href = "/dashboard";
+    } catch (error: any) {
       console.error(error);
       toast({
         title: "Erro",
-        description: "Ocorreu um erro ao criar sua conta",
+        description: error.message || "Ocorreu um erro ao criar sua conta",
         variant: "destructive",
       });
     } finally {
@@ -77,23 +86,38 @@ const RegistrationSection = ({
     e.preventDefault();
     try {
       setIsLoading(true);
-      await registerGuide({
-        ...guideForm,
+
+      const authData = await registerGuide({
+        name: guideForm.name,
+        email: guideForm.email,
+        password: guideForm.password,
+        location: guideForm.location,
+        languages: guideForm.languages,
+        specialties: guideForm.specialties,
+        cadastur_number: guideForm.cadastur_number,
         social_links: {
           tripadvisor: guideForm.tripadvisor,
           instagram: guideForm.instagram,
         },
       });
+
+      if (!authData) {
+        throw new Error("Failed to register");
+      }
+
       toast({
         title: "Sucesso!",
-        description: "Verifique seu email para confirmar o cadastro",
+        description: "Cadastro realizado com sucesso! Redirecionando...",
       });
+
       onSubmit(guideForm);
-    } catch (error) {
+      // Redirecionar para o dashboard após cadastro
+      window.location.href = "/dashboard/guide";
+    } catch (error: any) {
       console.error(error);
       toast({
         title: "Erro",
-        description: "Ocorreu um erro ao criar sua conta",
+        description: error.message || "Ocorreu um erro ao criar sua conta",
         variant: "destructive",
       });
     } finally {
@@ -191,7 +215,7 @@ const RegistrationSection = ({
 
                   <Button
                     type="submit"
-                    className="w-full"
+                    className="w-full bg-emerald-600 hover:bg-emerald-700"
                     disabled={
                       isLoading ||
                       !touristForm.name ||
@@ -385,7 +409,7 @@ const RegistrationSection = ({
 
                   <Button
                     type="submit"
-                    className="w-full"
+                    className="w-full bg-emerald-600 hover:bg-emerald-700"
                     disabled={
                       isLoading ||
                       !guideForm.name ||

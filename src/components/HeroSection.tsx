@@ -19,7 +19,7 @@ interface HeroSectionProps {
 }
 
 const HeroSection = ({
-  backgroundImage = "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?q=80&w=2940&h=1200&fit=crop",
+  backgroundImage = "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=2940&h=1200&fit=crop",
   title = "Descubra locais, viva momentos",
   subtitle = "Conecte-se com guias locais certificados para experiências inesquecíveis",
 }: HeroSectionProps) => {
@@ -29,7 +29,7 @@ const HeroSection = ({
         className="absolute inset-0 bg-cover bg-center"
         style={{ backgroundImage: `url(${backgroundImage})` }}
       >
-        <div className="absolute inset-0 bg-black/50" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/60 to-black/40" />
       </div>
 
       <div className="relative h-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -37,16 +37,18 @@ const HeroSection = ({
           <AuthButton />
         </div>
         <div className="flex flex-col justify-center items-center text-center text-white h-full">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 tracking-tight">
             {title}
           </h1>
-          <p className="text-xl md:text-2xl mb-12 max-w-2xl">{subtitle}</p>
+          <p className="text-xl md:text-2xl mb-12 max-w-2xl font-light">
+            {subtitle}
+          </p>
 
-          <div className="w-full max-w-4xl bg-white/10 backdrop-blur-md rounded-lg p-4 md:p-6 space-y-4">
+          <div className="w-full max-w-4xl bg-white/5 backdrop-blur-md rounded-md border border-white/10 shadow-lg p-4 md:p-6 space-y-4">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               <div className="relative">
                 <Select>
-                  <SelectTrigger className="w-full bg-white text-gray-900">
+                  <SelectTrigger className="w-full bg-white/90 text-gray-900 border-0 shadow-sm">
                     <div className="flex items-center gap-2">
                       <MapPin className="w-4 h-4" />
                       <SelectValue placeholder="Selecione o local" />
@@ -54,7 +56,7 @@ const HeroSection = ({
                   </SelectTrigger>
                   <SelectContent>
                     <div className="p-2">
-                      <p className="font-semibold mb-2 text-sm text-emerald-700">
+                      <p className="font-semibold mb-2 text-sm text-primary">
                         Serra da Mantiqueira MG/SP
                       </p>
                       <SelectItem value="campos-do-jordao">
@@ -68,7 +70,7 @@ const HeroSection = ({
                     </div>
 
                     <div className="p-2 border-t">
-                      <p className="font-semibold mb-2 text-sm text-emerald-700">
+                      <p className="font-semibold mb-2 text-sm text-primary">
                         Litoral Norte Paulista
                       </p>
                       <SelectItem value="ubatuba">Ubatuba</SelectItem>
@@ -82,7 +84,7 @@ const HeroSection = ({
                     </div>
 
                     <div className="p-2 border-t">
-                      <p className="font-semibold mb-2 text-sm text-emerald-700">
+                      <p className="font-semibold mb-2 text-sm text-primary">
                         Litoral Sul Fluminense
                       </p>
                       <SelectItem value="paraty">Paraty</SelectItem>
@@ -98,7 +100,7 @@ const HeroSection = ({
 
               <div className="relative">
                 <Select>
-                  <SelectTrigger className="w-full bg-white text-gray-900">
+                  <SelectTrigger className="w-full bg-white/90 text-gray-900 border-0 shadow-sm">
                     <div className="flex items-center gap-2">
                       <Calendar className="w-4 h-4" />
                       <SelectValue placeholder="Selecione a atividade" />
@@ -119,7 +121,7 @@ const HeroSection = ({
 
               <div className="relative">
                 <Select>
-                  <SelectTrigger className="w-full bg-white text-gray-900">
+                  <SelectTrigger className="w-full bg-white/90 text-gray-900 border-0 shadow-sm">
                     <div className="flex items-center gap-2">
                       <Calendar className="w-4 h-4" />
                       <SelectValue placeholder="Selecione as datas" />
@@ -139,7 +141,7 @@ const HeroSection = ({
                         className="w-full mt-4"
                         onClick={() => (window.location.href = "/search")}
                       >
-                        Buscar
+                        Buscar Experiências
                       </Button>
                     </div>
                   </SelectContent>

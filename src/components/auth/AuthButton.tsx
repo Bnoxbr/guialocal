@@ -7,10 +7,17 @@ import {
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../context/AuthContext";
 
 export const AuthButton = () => {
   const navigate = useNavigate();
-  const isAuthenticated = false; // Replace with actual auth state
+  const { user, signOut } = useAuth();
+  const isAuthenticated = !!user;
+
+  const handleLogout = async () => {
+    await signOut();
+    navigate("/");
+  };
 
   if (!isAuthenticated) {
     return (
@@ -26,6 +33,10 @@ export const AuthButton = () => {
     );
   }
 
+  const userType = user?.user_metadata?.type || "tourist";
+  const dashboardPath =
+    userType === "guide" ? "/dashboard/guide" : "/dashboard";
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -35,7 +46,7 @@ export const AuthButton = () => {
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-48">
-        <DropdownMenuItem onClick={() => navigate("/dashboard")}>
+        <DropdownMenuItem onClick={() => navigate(dashboardPath)}>
           Meu Painel
         </DropdownMenuItem>
         <DropdownMenuItem onClick={() => navigate("/bookings")}>
@@ -44,13 +55,7 @@ export const AuthButton = () => {
         <DropdownMenuItem onClick={() => navigate("/profile")}>
           Meu Perfil
         </DropdownMenuItem>
-        <DropdownMenuItem
-          onClick={() => {
-            /* Implement logout */
-          }}
-        >
-          Sair
-        </DropdownMenuItem>
+        <DropdownMenuItem onClick={handleLogout}>Sair</DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
   );

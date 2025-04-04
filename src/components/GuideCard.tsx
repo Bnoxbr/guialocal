@@ -25,12 +25,12 @@ const GuideCard = ({
   return (
     <Card className="w-[280px] h-[380px] bg-white hover:shadow-lg transition-shadow relative">
       <Button
-        className="absolute bottom-4 left-4 right-4"
+        className="absolute bottom-4 left-4 right-4 bg-emerald-600 hover:bg-emerald-700"
         onClick={() =>
           (window.location.href = `/booking/${name.toLowerCase().replace(/ /g, "-")}`)
         }
       >
-        Reservar
+        A partir de R$150
       </Button>
       <CardHeader className="space-y-4">
         <div className="flex justify-center">
