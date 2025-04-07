@@ -290,22 +290,38 @@ const MobileHome: React.FC = () => {
 
       {/* Bottom Navigation */}
       <nav className="fixed bottom-0 w-full max-w-md mx-auto bg-white border-t border-gray-200 shadow-md">
-        <div className="grid grid-cols-4 gap-0">
+        <div className="grid grid-cols-5 gap-0">
           <button className="flex flex-col items-center justify-center p-2 text-primary">
             <Search className="h-5 w-5 mb-1" />
             <span className="text-xs">Explorar</span>
           </button>
-          <button className="flex flex-col items-center justify-center p-2 text-gray-500 hover:text-primary transition-colors">
+          <button
+            className="flex flex-col items-center justify-center p-2 text-gray-500 hover:text-primary transition-colors"
+            onClick={() => (window.location.href = "/search")}
+          >
             <Heart className="h-5 w-5 mb-1" />
             <span className="text-xs">Favoritos</span>
           </button>
-          <button className="flex flex-col items-center justify-center p-2 text-gray-500 hover:text-primary transition-colors">
+          <button
+            className="flex flex-col items-center justify-center p-2 text-gray-500 hover:text-primary transition-colors"
+            onClick={() => (window.location.href = "/dashboard")}
+          >
             <Calendar className="h-5 w-5 mb-1" />
             <span className="text-xs">Reservas</span>
           </button>
-          <button className="flex flex-col items-center justify-center p-2 text-gray-500 hover:text-primary transition-colors">
+          <button
+            className="flex flex-col items-center justify-center p-2 text-gray-500 hover:text-primary transition-colors"
+            onClick={() => (window.location.href = "/profile")}
+          >
             <User className="h-5 w-5 mb-1" />
             <span className="text-xs">Perfil</span>
+          </button>
+          <button
+            className="flex flex-col items-center justify-center p-2 text-gray-500 hover:text-primary transition-colors"
+            onClick={() => (window.location.href = "/login")}
+          >
+            <User className="h-5 w-5 mb-1" />
+            <span className="text-xs">Login</span>
           </button>
         </div>
       </nav>

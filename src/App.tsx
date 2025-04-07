@@ -13,6 +13,7 @@ import { LoginForm } from "./components/auth/LoginForm";
 import { useEffect, useState } from "react";
 import { AuthProvider } from "./context/AuthContext";
 import { Toaster } from "./components/ui/toaster";
+import AdminDashboard from "./components/admin/AdminDashboard";
 
 // Use a named function component instead of an arrow function for better Fast Refresh support
 function App() {
@@ -51,6 +52,7 @@ function App() {
         <Route path="/dashboard/guide" element={<GuideDashboard />} />
         <Route path="/dashboard" element={<TouristDashboard />} />
         <Route path="/login" element={<LoginForm />} />
+        <Route path="/admin" element={<AdminDashboard />} />
 
         {/* Add this before the catchall route */}
         {import.meta.env.VITE_TEMPO && <Route path="/tempobook/*" />}
